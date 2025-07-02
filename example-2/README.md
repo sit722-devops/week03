@@ -1,0 +1,3 @@
+# Week 03 Example 2: Full-Stack Microservices with Dedicated Databases, Persistent Storage & Azure Blob Storage
+
+This example significantly expands on previous weeks by demonstrating a more robust microservices architecture. It features two distinct microservices, each with its own dedicated PostgreSQL database, a unified frontend, and integration with Azure Blob Storage for handling product images. All components are orchestrated using Podman Compose, emphasizing persistent storage for the databases.
