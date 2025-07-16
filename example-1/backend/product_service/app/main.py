@@ -6,7 +6,7 @@ Manages product information including creation, retrieval, updates, deletion,
 and stock management. This service demonstrates a structured approach with
 separate database models and Pydantic schemas.
 """
-
+import os
 import logging
 import sys
 import time
@@ -34,6 +34,20 @@ logger = logging.getLogger(__name__)
 # Suppress noisy logs from third-party libraries for cleaner output
 logging.getLogger("uvicorn.access").setLevel(logging.WARNING)
 logging.getLogger("uvicorn.error").setLevel(logging.INFO)
+
+# Lood envrionment vairables
+AZURE_STORAGE_ACCOUNT_NAME = os.getenv("AZURE_STORAGE_ACCOUNT_NAME")
+AZURE_STORAGE_ACCOUNT_KEY = os.getenv("AZURE_STORAGE_ACCOUNT_KEY")
+AZURE_STORAGE_CONTAINER_NAME = os.getenv(
+    "AZURE_STORAGE_CONTAINER_NAME", "product-images"
+)
+AZURE_SAS_TOKEN_EXPIRY_HOURS = int(os.getenv("AZURE_SAS_TOKEN_EXPIRY_HOURS", "24"))
+
+# Initialize BlobServiceClient
+if AZURE_STORAGE_ACCOUNT_NAME and AZURE_STORAGE_ACCOUNT_KEY:
+    logger.info("Product Service: Azure environment variables populated correctly.")
+else:
+    logger.info("Product Service: Azure environment variables **NOT SET**")
 
 
 # -----------------------------

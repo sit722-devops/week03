@@ -1,6 +1,5 @@
 # week03/example-1/docker-compose.yml
 
-version: "3.9"
 services:
   # PostgreSQL Database Service
   db:

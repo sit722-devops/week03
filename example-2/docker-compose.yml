@@ -1,7 +1,5 @@
 # week03/example-2/docker-compose.yml
 
-version: "3.8"
-
 services:
   # PostgreSQL Database for Product Service
   product_db:
