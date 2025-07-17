@@ -1,6 +1,5 @@
 # week03/example-1/docker-compose.yml
 
-version: "3.9"
 services:
   # PostgreSQL Database Service
   db:
@@ -22,6 +21,7 @@ services:
   # Product Microservice (FastAPI)
   product_service:
     build: ./backend/product_service
+    image: product_service_image
     container_name: product_service_container
     restart: always
     ports:

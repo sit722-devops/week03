@@ -2,7 +2,7 @@
 # Uses Nginx to serve the static frontend files.
 
 # Use a lightweight Nginx image
-FROM docker.io/nginx:alpine
+FROM nginx:alpine
 
 # Copy the Nginx default configuration to serve from /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
