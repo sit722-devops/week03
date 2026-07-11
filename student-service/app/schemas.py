@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, ConfigDict, EmailStr
 
 
 class StudentCreate(BaseModel):
@@ -9,10 +9,9 @@ class StudentCreate(BaseModel):
 
 
 class StudentResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     student_id: str
     name: str
     email: EmailStr
     program: str
-
-    class Config:
-        from_attributes = True

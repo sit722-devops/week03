@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class CourseCreate(BaseModel):
@@ -9,10 +9,10 @@ class CourseCreate(BaseModel):
 
 
 class CourseResponse(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    
     course_id: str
     course_name: str
     credit_points: int
     faculty: str
 
-    class Config:
-        from_attributes = True

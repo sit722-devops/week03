@@ -1,6 +1,6 @@
+import asyncio
 import logging
-import sys
-import time
+from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -17,10 +17,50 @@ logging.basicConfig(
 
 logger = logging.getLogger("course-service")
 
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    max_retries = 10
+    retry_delay_seconds = 5
+
+    for attempt in range(1, max_retries + 1):
+        try:
+            logger.info(
+                f"Connecting to PostgreSQL and creating tables "
+                f"(attempt {attempt}/{max_retries})..."
+            )
+
+            with engine.begin() as connection:
+                Base.metadata.create_all(bind=connection)
+
+            logger.info("PostgreSQL connection successful. Tables are ready.")
+            break
+
+        except OperationalError as error:
+            logger.warning(f"PostgreSQL connection failed: {error}")
+
+            if attempt == max_retries:
+                logger.critical("PostgreSQL connection failed after all retries.")
+                raise RuntimeError("Database startup failed") from error
+
+            logger.info(f"Retrying in {retry_delay_seconds} seconds...")
+            await asyncio.sleep(retry_delay_seconds)
+
+        except Exception:
+            logger.critical(
+                "Unexpected error during database startup",
+                exc_info=True
+            )
+            raise
+
+    yield
+
+
 app = FastAPI(
     title="Course Service",
     description="Week 03 Course Service with FastAPI, PostgreSQL and Docker Compose",
     version="3.0.0",
+    lifespan=lifespan
 )
 
 app.add_middleware(
@@ -30,41 +70,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-@app.on_event("startup")
-async def startup_event():
-    max_retries = 10
-    retry_delay_seconds = 5
-
-    for attempt in range(max_retries):
-        try:
-            logger.info(
-                f"Connecting to PostgreSQL and creating tables "
-                f"(attempt {attempt + 1}/{max_retries})..."
-            )
-
-            Base.metadata.create_all(bind=engine)
-
-            logger.info("PostgreSQL connection successful. Tables are ready.")
-            break
-
-        except OperationalError as error:
-            logger.warning(f"PostgreSQL connection failed: {error}")
-
-            if attempt < max_retries - 1:
-                logger.info(f"Retrying in {retry_delay_seconds} seconds...")
-                time.sleep(retry_delay_seconds)
-            else:
-                logger.critical("PostgreSQL connection failed after all retries.")
-                sys.exit(1)
-
-        except Exception as error:
-            logger.critical(
-                f"Unexpected error during database startup: {error}", exc_info=True
-            )
-            sys.exit(1)
-
 
 @app.get("/")
 def root():
