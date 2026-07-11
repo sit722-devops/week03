@@ -12,7 +12,7 @@ Unlike Week 02, which contained a single FastAPI application, this week's soluti
 * Course Database (PostgreSQL)
 * Frontend (React)
 
-Docker Compose will be used to build, configure, network, and run all services using a single command.
+Docker Compose will be used to **build**, **configure**, **network**, and run all services using a single command.
 
 ---
 
@@ -45,58 +45,23 @@ After completing this practical, you should be able to:
 
 ---
 
-## Prerequisites
-
-Before starting this practical, ensure you have the following installed.
-
-### Node.js (Required for React Frontend)
-
-Download:
-
-https://nodejs.org/
-
-Verify installation:
-
-```bash
-node --version
-npm --version
-```
-
----
-
-## Project Structure
-
-```text
-week03/
-│
-├── student-service/
-├── course-service/
-├── frontend/
-├── docker-compose.yml
-├── README.md
-└── .gitignore
-```
-
----
-
 # Setup Instructions
 
 1. Clone the Repository
 
-```bash
-git clone https://github.com/sit722-devops/week03.git
-```
+    ```bash
+    git clone https://github.com/sit722-devops/week03.git
+    ```
 
 2. Navigate to the Project
 
-```bash
-cd week03
-```
+    ```bash
+    cd week03
+    ```
 
 3. Open the Project
 
-Open the **week03** folder using **Visual Studio Code**.
-
+       Open the `week03` folder using Visual Studio Code.
 ---
 
 ## Backend Setup
@@ -105,97 +70,101 @@ The Student Service and Course Service each have their own Python environment an
 
 ### Student Service
 
-Navigate to the Student Service.
+1. Navigate to the Student Service.
 
-```bash
-cd student-service
-```
+    ```bash
+    cd student-service
+    ```
 
-Create a virtual environment.
+2. Create a virtual environment.
 
-```bash
-# Create the virtual environment
-python -m venv .venv
+    ```bash
+    # Create the virtual environment
+    python -m venv .venv
 
-# Activate the virtual environment
-# On macOS/Linux:
-source ./.venv/bin/activate
-# On Windows (Command Prompt):
-# .\.venv\Scripts\activate.bat
-# On Windows (PowerShell):
-# .\.venv\Scripts\Activate.ps1
-```
+    # Activate the virtual environment
+    # On macOS/Linux:
+    source ./.venv/bin/activate
 
-Install dependencies.
+    # On Windows (Command Prompt):
+    # .\.venv\Scripts\activate.bat
 
-```bash
-pip install -r requirements.txt
-```
+    # On Windows (PowerShell):
+    # .\.venv\Scripts\Activate.ps1
+    ```
 
-Return to the project root.
+3. Install dependencies.
 
-```bash
-cd ..
-```
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Return to the project root.
+
+    ```bash
+    cd ..
+    ```
 
 ---
 
 ### Course Service
 
-Navigate to the Course Service.
+1. Navigate to the Course Service.
 
-```bash
-cd course-service
-```
+    ```bash
+    cd course-service
+    ```
 
-Create a virtual environment.
+2. Create a virtual environment.
 
-```bash
-# Create the virtual environment
-python -m venv .venv
+    ```bash
+    # Create the virtual environment
+    python -m venv .venv
 
-# Activate the virtual environment
-# On macOS/Linux:
-source ./.venv/bin/activate
-# On Windows (Command Prompt):
-# .\.venv\Scripts\activate.bat
-# On Windows (PowerShell):
-# .\.venv\Scripts\Activate.ps1
-```
+    # Activate the virtual environment
+    # On macOS/Linux:
+    source ./.venv/bin/activate
 
-Install dependencies.
+    # On Windows (Command Prompt):
+    # .\.venv\Scripts\activate.bat
 
-```bash
-pip install -r requirements.txt
-```
+    # On Windows (PowerShell):
+    # .\.venv\Scripts\Activate.ps1
+    ```
 
-Return to the project root.
+3. Install dependencies.
 
-```bash
-cd ..
-```
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. Return to the project root.
+
+    ```bash
+    cd ..
+    ```
 
 ---
 
 ## Frontend Setup
 
-Navigate to the frontend.
+1. Navigate to the frontend.
 
-```bash
-cd frontend
-```
+    ```bash
+    cd frontend
+    ```
 
-Install the required Node.js packages.
+2. Install the required Node.js packages.
 
-```bash
-npm install
-```
+    ```bash
+    npm install
+    ```
 
-Return to the project root.
+3. Return to the project root.
 
-```bash
-cd ..
-```
+    ```bash
+    cd ..
+    ```
 
 ---
 
@@ -210,6 +179,7 @@ cd student-service
 pytest tests
 cd ..
 ```
+
 > **NOTE**:
 > The Student Service unit tests require a PostgreSQL database named students.
 > If the database does not already exist, create it before running the tests.
