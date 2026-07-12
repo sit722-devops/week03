@@ -206,8 +206,16 @@ From the project root directory, execute:
 ```bash
 docker compose build --no-cache
 
-docker compose build -d
+docker compose up -d
 ```
+
+> **NOTE:** Depding on your versdion of Docker, you may need to replace `docker compose` with `docker-compose`, such as:
+> ```bash
+> docker-compose build --no-cache
+> 
+> docker-compose up -d
+> ```
+
 
 Docker Compose will automatically:
 
