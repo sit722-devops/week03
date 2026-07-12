@@ -30,18 +30,7 @@ After completing this practical, you should be able to:
 ---
 
 ## Application Architecture
-
-```text
-                    Browser
-                        |
-                  React Frontend
-                        |
-        ---------------------------------
-        |                               |
- Student Service                 Course Service
-        |                               |
- PostgreSQL (students)          PostgreSQL (courses)
-```
+![Application Architecture](./Architecture.png)
 
 ---
 
