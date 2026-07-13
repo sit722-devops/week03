@@ -209,7 +209,7 @@ docker compose build --no-cache
 docker compose up -d
 ```
 
-> **NOTE:** Depding on your versdion of Docker, you may need to replace `docker compose` with `docker-compose`, such as:
+> **NOTE:** Depending on your version of Docker, you may need to replace `docker compose` with `docker-compose`, such as:
 > ```bash
 > docker-compose build --no-cache
 > 
