@@ -30,11 +30,12 @@ After completing this practical, you should be able to:
 ---
 
 ## Application Architecture
+
 ![Application Architecture](./Architecture.png)
 
 ---
 
-# Setup Instructions
+## Setup Instructions
 
 1. Clone the Repository
 
@@ -50,7 +51,8 @@ After completing this practical, you should be able to:
 
 3. Open the Project
 
-       Open the `week03` folder using Visual Studio Code.
+    Open the `week03` folder using Visual Studio Code.
+
 ---
 
 ## Backend Setup
@@ -88,9 +90,10 @@ The Student Service and Course Service each have their own Python environment an
     pip install -r requirements.txt
     ```
 
-4. Return to the project root.
+4. Deactivate the virtual environment and return to the project root.
 
     ```bash
+    deactivate
     cd ..
     ```
 
@@ -127,9 +130,10 @@ The Student Service and Course Service each have their own Python environment an
     pip install -r requirements.txt
     ```
 
-4. Return to the project root.
+4. Deactivate the virtual environment and return to the project root.
 
     ```bash
+    deactivate
     cd ..
     ```
 
@@ -165,8 +169,10 @@ Before deploying the application using Docker Compose, ensure all unit tests pas
 
 ```bash
 cd student-service
-pytest tests
+pytest --verbose tests
 cd ..
+
+
 ```
 
 > **NOTE**:
@@ -179,7 +185,7 @@ cd ..
 
 ```bash
 cd course-service
-pytest tests
+pytest --verbose tests
 cd ..
 ```
 
